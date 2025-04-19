@@ -46,7 +46,11 @@
           <div class="text-center mt-8 text-slate-600">
             <h1>
               Don't have an account?
-              <span class="text-[#5E42D3] cursor-pointer">Sign Up</span>
+              <span
+                class="text-[#5E42D3] cursor-pointer"
+                @click="moveToRegister"
+                >Sign Up</span
+              >
             </h1>
           </div>
         </form>
@@ -57,10 +61,15 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const email = ref<string | null>(null);
 const password = ref<string | null>(null);
-const isValidateForm = ref<boolean>(false);
+
+const moveToRegister = () => {
+  router.push("/register");
+};
 
 const handleSubmit = () => {
   console.log(email.value, password.value);
