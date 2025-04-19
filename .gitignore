@@ -29,5 +29,4 @@ coverage
 
 *.tsbuildinfo
 
-# Database files
-database/db.json
+/database/db.json
