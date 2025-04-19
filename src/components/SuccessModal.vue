@@ -5,10 +5,9 @@
     <div class="w-20">
       <img src="@/assets/success-animation.gif" alt="" />
     </div>
-    <h1 class="text-2xl font-bold">Registration Successful</h1>
+    <h1 class="text-2xl font-bold">{{ header }}</h1>
     <p class="text-slate-500 text-center text-md">
-      Your account has been successfully created. You can now log in to your
-      account.
+      {{ subHeader }}
     </p>
     <button
       class="bg-[#5E42D3] text-center w-14 text-white h-10 rounded-md cursor-pointer"
@@ -22,9 +21,16 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 
+interface Props {
+  header: string;
+  subHeader: string;
+  routerUrl: string;
+}
+
+const { header, subHeader, routerUrl } = defineProps<Props>();
 const router = useRouter();
 
 const handleOk = () => {
-  router.push("/login");
+  router.push(routerUrl);
 };
 </script>

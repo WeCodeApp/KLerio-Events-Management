@@ -74,7 +74,11 @@
       v-if="showModal"
       class="bg-slate-500/50 fixed inset-0 z-10 flex justify-center items-center"
     >
-      <ConfirmationDialog />
+      <ConfirmationDialog
+        :header="header"
+        :subHeader="subHeader"
+        routerUrl="/login"
+      />
     </div>
   </div>
 </template>
@@ -91,6 +95,10 @@ type UserData = {
   email: string | null;
   password: string | null;
 };
+
+const header = "Registration Successfully";
+const subHeader =
+  "Your account has been successfully created. You can now log in to your account.";
 
 const router = useRouter();
 const showModal = ref<boolean>(false);
@@ -113,7 +121,12 @@ const resetData = () => {
 };
 
 const handleSubmit = async () => {
-  if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
+  if (
+    !userData.firstName ||
+    !userData.lastName ||
+    !userData.email ||
+    !userData.password
+  ) {
     console.warn("All fields are required.");
     return;
   }
