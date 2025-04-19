@@ -53,10 +53,15 @@
           </div>
           <button
             type="submit"
-            class="bg-[#5E42D3] text-center w-full text-white h-10 rounded-md cursor-pointer active:scale-95 transition-transform duration-150"
-            @click="handleSubmit"
+            class="relative bg-[#5E42D3] text-center w-full text-white h-10 rounded-md cursor-pointer active:scale-95 transition-transform duration-150"
           >
-            Sign Up
+            <div
+              v-if="isButtonLoading"
+              class="absolute inset-0 flex justify-center items-center"
+            >
+              <img class="h-12" src="@/assets/loading-animation.gif" alt="" />
+            </div>
+            <span v-else>Sign Up</span>
           </button>
 
           <div class="text-center mt-8 text-slate-600">
@@ -101,6 +106,7 @@ const subHeader =
   "Your account has been successfully created. You can now log in to your account.";
 
 const router = useRouter();
+const isButtonLoading = ref<boolean>(false);
 const showModal = ref<boolean>(false);
 const userData = reactive<UserData>({
   firstName: null,
@@ -130,6 +136,7 @@ const handleSubmit = async () => {
     console.warn("All fields are required.");
     return;
   }
+  isButtonLoading.value = true;
 
   const data = {
     firstName: userData.firstName,
@@ -140,8 +147,11 @@ const handleSubmit = async () => {
 
   try {
     await postUserData("http://localhost:3000/users", data);
-    showModal.value = true;
-    resetData();
+    setTimeout(() => {
+      showModal.value = true;
+      isButtonLoading.value = false;
+      resetData();
+    }, 2000);
   } catch (error) {
     console.error("Error during registration:", error);
   }

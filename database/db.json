@@ -6,13 +6,6 @@
       "lastName": "lerio",
       "email": "k.lerio@gmail.com",
       "password": "qwerty123"
-    },
-    {
-      "id": "f136",
-      "firstName": "andrew",
-      "lastName": "garfield",
-      "email": "a.garfield@gmail.com",
-      "password": "12345"
     }
   ]
 }

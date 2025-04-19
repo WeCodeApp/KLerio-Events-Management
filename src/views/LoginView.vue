@@ -36,14 +36,20 @@
               required
             />
           </div>
-          <span v-if="isEmailValidate" class="text-sm text-red-600"
+          <span v-if="isEmailPasswordValidate" class="text-sm text-red-600"
             >Invalid email or password</span
           >
           <button
             type="submit"
-            class="mt-5 bg-[#5E42D3] text-center w-full text-white h-10 rounded-md cursor-pointer active:scale-95 transition-transform duration-150"
+            class="relative mt-5 bg-[#5E42D3] text-center w-full text-white h-10 rounded-md cursor-pointer active:scale-95 transition-transform duration-150"
           >
-            Log In
+            <div
+              v-if="isButtonLoading"
+              class="absolute inset-0 flex justify-center items-center"
+            >
+              <img class="h-12" src="@/assets/loading-animation.gif" alt="" />
+            </div>
+            <span v-else>Login</span>
           </button>
 
           <div class="text-center mt-8 text-slate-600">
@@ -85,7 +91,8 @@ const router = useRouter();
 const showModal = ref<boolean>(false);
 const email = ref<string | null>(null);
 const password = ref<string | null>(null);
-const isEmailValidate = ref<boolean>(false);
+const isEmailPasswordValidate = ref<boolean>(false);
+const isButtonLoading = ref<boolean>(false);
 
 const moveToRegister = () => {
   router.push("/register");
@@ -101,11 +108,15 @@ const handleSubmit = async () => {
 
   if (user) {
     console.log("Login successful");
-    isEmailValidate.value = false;
-    showModal.value = true;
+    isEmailPasswordValidate.value = false;
+    isButtonLoading.value = true;
+    setTimeout(() => {
+      showModal.value = true;
+      isButtonLoading.value = false;
+    }, 2000);
   } else {
     console.log("Invalid email or password");
-    isEmailValidate.value = true;
+    isEmailPasswordValidate.value = true;
   }
 };
 </script>

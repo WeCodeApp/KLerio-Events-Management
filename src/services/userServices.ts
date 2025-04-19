@@ -8,9 +8,6 @@ export const postUserData = async (url: string, data: any) => {
       },
       body: JSON.stringify(data),
     };
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     const response = await fetch(url, option);
 
     if (!response.ok) {
