@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": "176a",
+      "firstName": "kyle",
+      "lastName": "lerio",
+      "email": "k.lerio@gmail.com",
+      "password": "qwerty123"
+    },
+    {
+      "id": "f136",
+      "firstName": "andrew",
+      "lastName": "garfield",
+      "email": "a.garfield@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": "bed2",
+      "firstName": "peter",
+      "lastName": "parker",
+      "email": "p.parker@gmail.com",
+      "password": "peter123"
+    },
+    {
+      "id": "9b99",
+      "firstName": "qwen",
+      "lastName": "stacy",
+      "email": "gstacy@gmail.com",
+      "password": "qwen12345"
+    },
+    {
+      "id": "5ff9",
+      "firstName": "nicole",
+      "lastName": "gumolon",
+      "email": "n.gumolon@gmail.com",
+      "password": "123456789"
+    },
+    {
+      "id": "1d50",
+      "firstName": "mark",
+      "lastName": "ledesma",
+      "email": "m.ledesma@gmail.com",
+      "password": "qwerty123"
+    },
+    {
+      "id": "9060",
+      "firstName": "marben",
+      "lastName": "acebuche",
+      "email": "m.acebuche@gmail.com",
+      "password": "supermarben"
+    },
+    {
+      "id": "c8e9",
+      "firstName": "carlo",
+      "lastName": "johnson",
+      "email": "c.johnson@gmail.com",
+      "password": "carlo123"
+    }
+  ]
+}

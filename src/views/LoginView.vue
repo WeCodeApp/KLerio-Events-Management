@@ -15,7 +15,7 @@
       <div>
         <form @submit.prevent="handleSubmit">
           <div class="flex flex-col mb-4 gap-2">
-            <label for="email">Email Address</label>
+            <label class="font-semibold" for="email">Email Address</label>
             <input
               class="border border-slate-300 rounded-md px-3 py-2 focus:border-[#5E42D3] focus:outline-[#5E42D3]"
               placeholder="Enter your email"
@@ -26,7 +26,7 @@
             />
           </div>
           <div class="flex flex-col mb-10 gap-2">
-            <label for="password">Password</label>
+            <label class="font-semibold" for="password">Password</label>
             <input
               class="border border-slate-300 rounded-md px-3 py-2 focus:border-[#5E42D3] focus:outline-[#5E42D3]"
               placeholder="Enter your password"
@@ -38,7 +38,7 @@
           </div>
           <button
             type="submit"
-            class="bg-[#5E42D3] text-center w-full text-white h-10 rounded-md"
+            class="bg-[#5E42D3] text-center w-full text-white h-10 rounded-md cursor-pointer active:scale-95 transition-transform duration-150"
           >
             Log In
           </button>

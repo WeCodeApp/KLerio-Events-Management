@@ -8,7 +8,7 @@
       <div>
         <form @submit.prevent="handleSubmit">
           <div class="flex flex-col mb-4 gap-2">
-            <label for="email">First Name</label>
+            <label class="font-semibold" for="email">First Name *</label>
             <input
               class="border border-slate-300 rounded-md px-3 py-2 focus:border-[#5E42D3] focus:outline-[#5E42D3]"
               placeholder="Enter your first name"
@@ -19,7 +19,7 @@
             />
           </div>
           <div class="flex flex-col mb-4 gap-2">
-            <label for="email">Last Name</label>
+            <label class="font-semibold" for="email">Last Name *</label>
             <input
               class="border border-slate-300 rounded-md px-3 py-2 focus:border-[#5E42D3] focus:outline-[#5E42D3]"
               placeholder="Enter your last name"
@@ -30,7 +30,7 @@
             />
           </div>
           <div class="flex flex-col mb-4 gap-2">
-            <label for="email">Email Address</label>
+            <label class="font-semibold" for="email">Email Address *</label>
             <input
               class="border border-slate-300 rounded-md px-3 py-2 focus:border-[#5E42D3] focus:outline-[#5E42D3]"
               placeholder="Enter your email"
@@ -41,7 +41,7 @@
             />
           </div>
           <div class="flex flex-col mb-10 gap-2">
-            <label for="password">Password</label>
+            <label class="font-semibold" for="password">Password *</label>
             <input
               class="border border-slate-300 rounded-md px-3 py-2 focus:border-[#5E42D3] focus:outline-[#5E42D3]"
               placeholder="Enter your password"
@@ -53,7 +53,8 @@
           </div>
           <button
             type="submit"
-            class="bg-[#5E42D3] text-center w-full text-white h-10 rounded-md"
+            class="bg-[#5E42D3] text-center w-full text-white h-10 rounded-md cursor-pointer active:scale-95 transition-transform duration-150"
+            @click="handleSubmit"
           >
             Sign Up
           </button>
@@ -69,12 +70,20 @@
         </form>
       </div>
     </div>
+    <div
+      v-if="showModal"
+      class="bg-slate-500/50 fixed inset-0 z-10 flex justify-center items-center"
+    >
+      <ConfirmationDialog />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import ConfirmationDialog from "@/components/ConfirmationModal.vue";
+import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import { postUserData } from "@/services/userServices";
 
 type UserData = {
   firstName: string | null;
@@ -84,6 +93,7 @@ type UserData = {
 };
 
 const router = useRouter();
+const showModal = ref<boolean>(false);
 const userData = reactive<UserData>({
   firstName: null,
   lastName: null,
@@ -95,7 +105,32 @@ const moveToLogin = () => {
   router.push("/login");
 };
 
-const handleSubmit = () => {
-  console.log(userData);
+const resetData = () => {
+  userData.firstName = null;
+  userData.lastName = null;
+  userData.email = null;
+  userData.password = null;
+};
+
+const handleSubmit = async () => {
+  if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
+    console.warn("All fields are required.");
+    return;
+  }
+
+  const data = {
+    firstName: userData.firstName,
+    lastName: userData.lastName,
+    email: userData.email,
+    password: userData.password,
+  };
+
+  try {
+    await postUserData("http://localhost:3000/users", data);
+    showModal.value = true;
+    resetData();
+  } catch (error) {
+    console.error("Error during registration:", error);
+  }
 };
 </script>

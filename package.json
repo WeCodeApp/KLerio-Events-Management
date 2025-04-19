@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "run-p json-server vite",
+    "json-server": "npx json-server ./database/db.json",
+    "vite": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -13,6 +15,7 @@
   "dependencies": {
     "@tailwindcss/cli": "^4.1.4",
     "@tailwindcss/vite": "^4.1.4",
+    "json-server": "^1.0.0-beta.3",
     "pinia": "^3.0.1",
     "tailwindcss": "^4.1.4",
     "vue": "^3.5.13",
