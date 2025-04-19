@@ -25,7 +25,7 @@
               required
             />
           </div>
-          <div class="flex flex-col mb-10 gap-2">
+          <div class="flex flex-col mb-5 gap-2">
             <label class="font-semibold" for="password">Password</label>
             <input
               class="border border-slate-300 rounded-md px-3 py-2 focus:border-[#5E42D3] focus:outline-[#5E42D3]"
@@ -36,9 +36,12 @@
               required
             />
           </div>
+          <span v-if="isEmailValidate" class="text-sm text-red-600"
+            >Invalid email or password</span
+          >
           <button
             type="submit"
-            class="bg-[#5E42D3] text-center w-full text-white h-10 rounded-md cursor-pointer active:scale-95 transition-transform duration-150"
+            class="mt-5 bg-[#5E42D3] text-center w-full text-white h-10 rounded-md cursor-pointer active:scale-95 transition-transform duration-150"
           >
             Log In
           </button>
@@ -60,18 +63,34 @@
 </template>
 
 <script setup lang="ts">
+import { getUserData } from "@/services/userServices";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const email = ref<string | null>(null);
 const password = ref<string | null>(null);
+const isEmailValidate = ref<boolean>(false);
 
 const moveToRegister = () => {
   router.push("/register");
 };
 
-const handleSubmit = () => {
-  console.log(email.value, password.value);
+const handleSubmit = async () => {
+  const response = await getUserData();
+
+  const user = response.find(
+    (user: { email: string; password: string }) =>
+      user.email === email.value && user.password === password.value
+  );
+
+  if (user) {
+    console.log("Login successful");
+    isEmailValidate.value = false;
+    router.push("/dashboard");
+  } else {
+    console.log("Invalid email or password");
+    isEmailValidate.value = true;
+  }
 };
 </script>

@@ -9,7 +9,6 @@ export const postUserData = async (url: string, data: any) => {
       body: JSON.stringify(data),
     };
 
-    // Adding a 2 seconds delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const response = await fetch(url, option);
@@ -26,13 +25,13 @@ export const postUserData = async (url: string, data: any) => {
 
 export const getUserData = async () => {
   try {
-    const response = await fetch("http://localhost:3000/users");
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
+    const rawResponse = await fetch("http://localhost:3000/users");
+    if (!rawResponse.ok) {
+      throw new Error(`Response status: ${rawResponse.status}`);
     }
 
-    const json = await response.json();
-    console.log(json);
+    const response = await rawResponse.json();
+    return response;
   } catch (error) {
     console.error(error);
   }

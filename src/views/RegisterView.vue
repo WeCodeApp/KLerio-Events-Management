@@ -80,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import ConfirmationDialog from "@/components/ConfirmationModal.vue";
+import ConfirmationDialog from "@/components/SuccessModal.vue";
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { postUserData } from "@/services/userServices";

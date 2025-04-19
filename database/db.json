@@ -55,6 +55,20 @@
       "lastName": "johnson",
       "email": "c.johnson@gmail.com",
       "password": "carlo123"
+    },
+    {
+      "id": "36de",
+      "firstName": "klyde",
+      "lastName": "kun",
+      "email": "kun@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "c39a",
+      "firstName": "klyde",
+      "lastName": "kun",
+      "email": "kun@gmail.com",
+      "password": "123"
     }
   ]
 }
