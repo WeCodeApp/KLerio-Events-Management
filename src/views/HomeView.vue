@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div>
+  <div class="flex justify-center">
     <h1>Hello World</h1>
   </div>
 </template>
+
+<script setup lang="ts"></script>
