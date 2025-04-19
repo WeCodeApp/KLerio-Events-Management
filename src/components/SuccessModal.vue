@@ -24,13 +24,15 @@ import { useRouter } from "vue-router";
 interface Props {
   header: string;
   subHeader: string;
-  routerUrl: string;
+  routerUrl?: string;
 }
 
 const { header, subHeader, routerUrl } = defineProps<Props>();
 const router = useRouter();
 
 const handleOk = () => {
-  router.push(routerUrl);
+  if (routerUrl !== undefined) {
+    router.push(`/${routerUrl}`);
+  }
 };
 </script>

@@ -77,7 +77,7 @@
       <ConfirmationDialog
         :header="header"
         :subHeader="subHeader"
-        routerUrl="/login"
+        routerUrl="login"
       />
     </div>
   </div>
@@ -96,7 +96,7 @@ type UserData = {
   password: string | null;
 };
 
-const header = "Registration Successfully";
+const header = "Registration Successfully!";
 const subHeader =
   "Your account has been successfully created. You can now log in to your account.";
 

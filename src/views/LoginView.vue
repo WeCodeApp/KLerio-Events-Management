@@ -59,15 +59,30 @@
         </form>
       </div>
     </div>
+    <div
+      v-if="showModal"
+      class="bg-slate-500/50 fixed inset-0 z-10 flex justify-center items-center"
+    >
+      <ConfirmationDialog
+        :header="header"
+        :subHeader="subHeader"
+        routerUrl="dashboard"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import ConfirmationDialog from "@/components/SuccessModal.vue";
 import { getUserData } from "@/services/userServices";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
+const header = "Login Successfully!";
+const subHeader = "You have successfully logged into your account.";
+
 const router = useRouter();
+const showModal = ref<boolean>(false);
 const email = ref<string | null>(null);
 const password = ref<string | null>(null);
 const isEmailValidate = ref<boolean>(false);
@@ -87,7 +102,7 @@ const handleSubmit = async () => {
   if (user) {
     console.log("Login successful");
     isEmailValidate.value = false;
-    router.push("/dashboard");
+    showModal.value = true;
   } else {
     console.log("Invalid email or password");
     isEmailValidate.value = true;
