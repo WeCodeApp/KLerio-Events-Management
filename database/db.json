@@ -14,5 +14,78 @@
       "email": "chui@gmail.com",
       "password": "12345"
     }
+  ],
+  "events": [
+    {
+      "id": "9e03",
+      "eventName": "Annual Company Retreat",
+      "eventDescription": "A weekend retreat for team-building activities.",
+      "participants": [
+        "Olivia Johnson",
+        "Ethan Smith",
+        "Sophia Martinez",
+        "Liam Brown",
+        "Ava Davis",
+        "Noah Wilson",
+        "Isabella Moore"
+      ],
+      "eventDate": "2025-04-30"
+    },
+    {
+      "id": "d01b",
+      "eventName": "Product Launch Event",
+      "eventDescription": "Unveiling our new product line to stakeholders.",
+      "participants": [
+        "Isabella Moore",
+        "Mason Taylor",
+        "Mia Anderson",
+        "Lucas Thomas",
+        "Ella Thompson",
+        "Michael Martin"
+      ],
+      "eventDate": "2025-05-01"
+    },
+    {
+      "id": "ca25",
+      "eventName": "Leadership Workshop",
+      "eventDescription": "Training session for future leaders of the company.",
+      "participants": [
+        "James Garcia",
+        "Abigail Clark",
+        "Benjamin Rodriguez",
+        "Scarlett Walker",
+        "Alexander Young"
+      ],
+      "eventDate": "2025-05-03"
+    },
+    {
+      "id": "cb63",
+      "eventName": "Customer Appreciation Day",
+      "eventDescription": "Celebrating and thanking our loyal customers.",
+      "participants": [
+        "Daniel Hall",
+        "Elizabeth Allen",
+        "Logan Wright",
+        "Chloe King",
+        "Matthew Scott"
+      ],
+      "eventDate": "2025-05-04"
+    },
+    {
+      "id": "b972",
+      "eventName": "Charity Fun Run",
+      "eventDescription": "Organizing a fun run to raise funds for charity.",
+      "participants": [
+        "Jackson Green",
+        "Lily Baker",
+        "Aiden Adams",
+        "Grace Nelson",
+        "Carter Hill",
+        "Henry Rivera",
+        "Aria Campbell",
+        "Sebastian Mitchell"
+      ],
+      "eventDate": "2025-05-10"
+    }
   ]
 }

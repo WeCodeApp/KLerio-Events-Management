@@ -4,8 +4,8 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      redirect: '/login'
+      path: "/",
+      redirect: "/login",
     },
     {
       path: "/dashboard",
@@ -21,6 +21,11 @@ const router = createRouter({
       path: "/register",
       name: "register",
       component: () => import("@/views/RegisterView.vue"),
+    },
+    {
+      path: "/create-event",
+      name: "createEvent",
+      component: () => import("@/views/CreateEventView.vue"),
     },
     {
       path: "/:catchAll(.*)",
