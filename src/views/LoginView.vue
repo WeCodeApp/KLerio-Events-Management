@@ -107,7 +107,7 @@ const handleSubmit = async () => {
   );
 
   if (user) {
-    console.log("Login successful");
+    document.cookie = `user_email=${user.email}; path=/; max-age=86400`;
     isEmailPasswordValidate.value = false;
     isButtonLoading.value = true;
     setTimeout(() => {
@@ -115,7 +115,6 @@ const handleSubmit = async () => {
       isButtonLoading.value = false;
     }, 2000);
   } else {
-    console.log("Invalid email or password");
     isEmailPasswordValidate.value = true;
   }
 };
