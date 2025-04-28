@@ -4,7 +4,7 @@
       <div class="flex gap-10 mb-8 cursor-pointer">
         <img @click="moveToDashboard" src="@/assets/arrow_back.svg" alt="" />
         <div class="space-y-2">
-          <h1 class="font-bold text-2xl text-slate-800">Create New Event</h1>
+          <h1 class="font-bold text-2xl text-slate-800">{{ eventId ? 'Update Event Details' : 'Create New Event' }}</h1>
           <p class="text-slate-500">
             Fill in the details below to create your event
           </p>
@@ -101,6 +101,7 @@ import { onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const eventId = route.query.id as string | undefined;
 const router = useRouter();
 const participantInput = ref<string>("");
 const eventData = reactive<CreateEventType>({
@@ -141,7 +142,7 @@ const handleSubmitEvent = async (e: Event) => {
 };
 
 onMounted(async () => {
-  const eventId = route.query.id as string | undefined;
+  // const eventId = route.query.id as string | undefined;
   if (eventId) {
     try {
       const event = await getEventById(eventId);
