@@ -1,11 +1,27 @@
 <template>
   <div class="flex flex-col items-center bg-[#f9fafb] min-h-screen">
-    <div class="flex items-center justify-between w-full max-w-5xl my-10">
-      <div class="space-y-2">
-        <h1 class="font-bold text-2xl text-slate-800">My Events</h1>
-        <p class="text-slate-500">
-          Organize and oversee your events effortlessly
-        </p>
+    <div class="w-full max-w-5xl flex justify-end mt-6">
+      <button
+        class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full shadow-sm hover:bg-slate-100 transition"
+        @click="showProfileDialog = true"
+      >
+        <img src="@/assets/group.svg" alt="Profile" class="w-6 h-6" />
+        <span class="font-medium text-slate-700">Profile</span>
+      </button>
+    </div>
+    <div class="flex items-center justify-between w-full max-w-5xl my-5">
+      <div class="flex items-center gap-5">
+        <div
+          class="w-12 h-12 bg-[#5E42D3] rounded-full flex items-center justify-center cursor-pointer"
+        >
+          <img src="@/assets/group.svg" alt="" />
+        </div>
+        <div>
+          <h1 class="font-bold text-2xl text-slate-800">My Events</h1>
+          <p class="text-slate-500">
+            Organize and oversee your events effortlessly
+          </p>
+        </div>
       </div>
       <div>
         <button
@@ -17,6 +33,31 @@
             <span>Create Event</span>
           </div>
         </button>
+      </div>
+    </div>
+
+    <div
+      v-if="showProfileDialog"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/30"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-8 min-w-[320px]">
+        <div class="flex flex-col items-center">
+          <img src="@/assets/group.svg" alt="Profile" class="w-16 h-16 mb-4" />
+          <div class="font-bold text-lg mb-2">Your Profile</div>
+          <div class="text-slate-600 mb-6">{{ userEmail || "No email" }}</div>
+          <button
+            class="w-full bg-[#5E42D3] text-white py-2 rounded-md mb-2 hover:bg-[#4b36a8] transition"
+            @click="handleLogout"
+          >
+            Logout
+          </button>
+          <button
+            class="w-full bg-slate-100 text-slate-700 py-2 rounded-md hover:bg-slate-200 transition"
+            @click="showProfileDialog = false"
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
 
@@ -169,6 +210,8 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const eventData = ref<CreateEventType[]>([]);
+const showProfileDialog = ref(false);
+const userEmail = ref<string | null>(null);
 
 const totalEvents = computed(() => eventData.value.length);
 
@@ -187,6 +230,25 @@ const upcomingEvents = computed(() => {
     return new Date(event.eventDate) >= today;
   }).length;
 });
+
+// Helper to get cookie value by name
+function getCookie(name: string): string | null {
+  const value = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(name + "="));
+  return value ? decodeURIComponent(value.split("=")[1]) : null;
+}
+
+// Helper to delete cookie by name
+function deleteCookie(name: string) {
+  document.cookie = `${name}=; Max-Age=0; path=/`;
+}
+
+const handleLogout = () => {
+  deleteCookie("user_email");
+  showProfileDialog.value = false;
+  router.push("/login");
+};
 
 const moveToCreateEvent = () => {
   router.push("/create-event");
@@ -234,5 +296,6 @@ const deleteEvent = async (eventId: string | undefined) => {
 
 onMounted(() => {
   fetchEvents();
+  userEmail.value = getCookie("user_email");
 });
 </script>
